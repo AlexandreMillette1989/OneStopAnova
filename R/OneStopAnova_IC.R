@@ -21,5 +21,5 @@ OneStopAnova_IC = function(aov = "", p = ""){
   anova_predictions_table$se.fit = anova_predictions_means$se.fit
   anova_predictions_table$lower_ic = anova_predictions_table$fit + qt(p = p, df = aov$df.residual) * anova_predictions_table$se.fit
   anova_predictions_table$upper_ic = anova_predictions_table$fit - qt(p = p, df = aov$df.residual) * anova_predictions_table$se.fit
-  return(anova_predictions_table)
+  return(kable(anova_predictions_table))
 }
