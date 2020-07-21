@@ -1,7 +1,6 @@
 #' @title OneStopAnova
 #'
 #' @description This package generates One-Way and Two-Way Anova with assumptions verification, optional Log and optional Tukey.
-#' An other function also offers confidence interval.
 #'
 #' @usage OneStopAnova(Quantitative = "",
 #'              Qualitative = "",
@@ -11,8 +10,6 @@
 #'                            Qualitative2 = ""),
 #'              Log = TRUE/FALSE,
 #'              Tukey = TRUE/FALSE)
-#'
-#' OneStopAnova_IC(aov = "", p = "")
 #'
 #' @param Quantitative: The Quantitative variable
 #'
@@ -26,10 +23,6 @@
 #'
 #' @param Tukey: FALSE by default. If TRUE, Tukey Test on the Selected Variables
 #'
-#' @param aov: object holding the anova results
-#'
-#' @param p: confidence level (0.025 = 95 percent)
-#'
 #' @examples
 #' OneStopAnova(Quantitative = "calcium$Concentration",
 #'              Qualitative = "calcium$Trait",
@@ -39,10 +32,6 @@
 #'                            Qualitative2 = "Sexe"),
 #'              Log = TRUE,
 #'              Tukey = TRUE)
-#'
-#' aov = aov(Concentration ~ Trait + Sexe + Trait:Sexe, data = calcium)
-#' OneStopAnova_IC(aov = aov, p = 0.025)
-#'
 #'
 #' @export
 
