@@ -279,21 +279,58 @@ OneStopAnova = function(Quantitative, Qualitative, Qualitative2, var_names = c(Q
         }
         colnames(two_way_anova_tukey_table_qualitative2) = c("Difference", "Lower 95", "Upper 95", "Adjusted P-Value", "Significance Symbol")
 
+        # Qualitative1:Qualitative2
+        two_way_anova_tukey_qualitative_pair = TukeyHSD(two_way_anova, which = "Qualitative:Qualitative2")
+        two_way_anova_tukey_table_qualitative_pair = data.frame(unclass(two_way_anova_tukey_qualitative_pair$`Qualitative:Qualitative2`))
+        two_way_anova_tukey_table_qualitative_pair = round((two_way_anova_tukey_table_qualitative_pair),3)
+        two_way_anova_tukey_table_qualitative_pair[, "P_symbols"] = "NA"
+        colnames(two_way_anova_tukey_table_qualitative_pair) = c("Difference", "Lower", "Upper", "Adjusted", "Significance")
+        two_way_anova_tukey_table_qualitative_pair= two_way_anova_tukey_table_qualitative_pair %>%
+          mutate(
+            Adjusted = if_else(Adjusted == 0, 0.001, Adjusted))
+        colnames(two_way_anova_tukey_table_qualitative_pair) = c("Difference", "Lower", "Upper", "Adjusted", "Significance")
+        rownames(two_way_anova_tukey_table_qualitative_pair) = c(row.names(two_way_anova_tukey_qualitative_pair$`Qualitative:Qualitative2`))
+
+        ## Tukey significance Symbol Loop
+        for(i in seq_along(two_way_anova_tukey_table_qualitative_pair$Significance)){
+          row = two_way_anova_tukey_table_qualitative_pair$Adjusted[i]
+          row_symbol = two_way_anova_tukey_table_qualitative_pair$Significance[i]
+          if(row <= 0.001){
+            row_symbol = paste0("***")
+          }else if(row <= 0.01){
+            row_symbol = paste0("**")
+          }else if(row <= 0.05){
+            row_symbol = paste0("*")
+          } else if(row <= 0.10){
+            row_symbol = paste0(".")
+          } else if(row <= ""){
+            row_symbol = paste0(" ")
+          } else
+            row_symbol = paste0(" ")
+          two_way_anova_tukey_table_qualitative_pair$Adjusted[i] = row
+          two_way_anova_tukey_table_qualitative_pair$Significance[i] = row_symbol
+        }
+        colnames(two_way_anova_tukey_table_qualitative_pair) = c("Difference", "Lower 95", "Upper 95", "Adjusted P-Value", "Significance Symbol")
+
         ## Summary String Title
         summary_title_string1 = "Two-Way Anova Tukey"
         summary_title_string2 = var_names[1]
         summary_title_string3 = var_names[2]
-        summary_title_string4 = "Summary"
-        summary_title_qualitative = paste(summary_title_string1, summary_title_string2, summary_title_string4)
-        summary_title_qualitative2 = paste(summary_title_string1, summary_title_string3, summary_title_string4)
+        summary_title_string4 = var_names[3]
+        summary_title_string5 = "Summary"
+        summary_title_qualitative = paste(summary_title_string1, summary_title_string2, summary_title_string5)
+        summary_title_qualitative2 = paste(summary_title_string1, summary_title_string3, summary_title_string5)
+        summary_title_qualitative_pair = paste(summary_title_string1, summary_title_string4, summary_title_string5)
 
         ## Listing the summaries
         two_way_anova_tukey_print_summary1 = kable(two_way_anova_tukey_table_qualitative1, format = "pandoc", caption = summary_title_qualitative)
         two_way_anova_tukey_print_summary2 = kable(two_way_anova_tukey_table_qualitative2, format = "pandoc", caption = summary_title_qualitative2)
+        two_way_anova_tukey_print_summary_pair = kable(two_way_anova_tukey_table_qualitative_pair, format = "pandoc", caption = summary_title_qualitative_pair)
         two_way_anova_print_summary = kable(two_way_anova_table, format = "pandoc", caption = "Two-Way Anova Summary")
         two_way_anova_print_list = list(two_way_anova_print_summary,
                                         two_way_anova_tukey_print_summary1,
-                                        two_way_anova_tukey_print_summary2)
+                                        two_way_anova_tukey_print_summary2,
+                                        two_way_anova_tukey_print_summary_pair)
 
         ## Résultat Two-Way ANOVA | Tukey | No Log
         return(two_way_anova_print_list)
@@ -536,22 +573,59 @@ OneStopAnova = function(Quantitative, Qualitative, Qualitative2, var_names = c(Q
           }
           colnames(two_way_anova_tukey_table_qualitative2) = c("Difference", "Lower 95", "Upper 95", "Adjusted P-Value", "Significance Symbol")
 
+          # Qualitative1:Qualitative2
+          two_way_anova_tukey_qualitative_pair = TukeyHSD(two_way_anova, which = "Qualitative:Qualitative2")
+          two_way_anova_tukey_table_qualitative_pair = data.frame(unclass(two_way_anova_tukey_qualitative_pair$`Qualitative:Qualitative2`))
+          two_way_anova_tukey_table_qualitative_pair = round((two_way_anova_tukey_table_qualitative_pair),3)
+          two_way_anova_tukey_table_qualitative_pair[, "P_symbols"] = "NA"
+          colnames(two_way_anova_tukey_table_qualitative_pair) = c("Difference", "Lower", "Upper", "Adjusted", "Significance")
+          two_way_anova_tukey_table_qualitative_pair= two_way_anova_tukey_table_qualitative_pair %>%
+            mutate(
+              Adjusted = if_else(Adjusted == 0, 0.001, Adjusted))
+          colnames(two_way_anova_tukey_table_qualitative_pair) = c("Difference", "Lower", "Upper", "Adjusted", "Significance")
+          rownames(two_way_anova_tukey_table_qualitative_pair) = c(row.names(two_way_anova_tukey_qualitative_pair$`Qualitative:Qualitative2`))
+
+          ## Tukey significance Symbol Loop
+          for(i in seq_along(two_way_anova_tukey_table_qualitative_pair$Significance)){
+            row = two_way_anova_tukey_table_qualitative_pair$Adjusted[i]
+            row_symbol = two_way_anova_tukey_table_qualitative_pair$Significance[i]
+            if(row <= 0.001){
+              row_symbol = paste0("***")
+            }else if(row <= 0.01){
+              row_symbol = paste0("**")
+            }else if(row <= 0.05){
+              row_symbol = paste0("*")
+            } else if(row <= 0.10){
+              row_symbol = paste0(".")
+            } else if(row <= ""){
+              row_symbol = paste0(" ")
+            } else
+              row_symbol = paste0(" ")
+            two_way_anova_tukey_table_qualitative_pair$Adjusted[i] = row
+            two_way_anova_tukey_table_qualitative_pair$Significance[i] = row_symbol
+          }
+          colnames(two_way_anova_tukey_table_qualitative_pair) = c("Difference", "Lower 95", "Upper 95", "Adjusted P-Value", "Significance Symbol")
+
           ## Summary String Title
           summary_title_string1 = "Two-Way Anova Tukey"
           summary_title_string2 = var_names[1]
           summary_title_string3 = var_names[2]
-          summary_title_string4 = "Summary (Log)"
-          summary_title_qualitative = paste(summary_title_string1, summary_title_string2, summary_title_string4)
-          summary_title_qualitative2 = paste(summary_title_string1, summary_title_string3, summary_title_string4)
+          summary_title_string4 = var_names[3]
+          summary_title_string5 = "Summary (Log)"
+          summary_title_qualitative = paste(summary_title_string1, summary_title_string2, summary_title_string5)
+          summary_title_qualitative2 = paste(summary_title_string1, summary_title_string3, summary_title_string5)
+          summary_title_qualitative_pair = paste(summary_title_string1, summary_title_string4, summary_title_string5)
 
           ## Listing the summaries
           two_way_anova_tukey_print_summary1 = kable(two_way_anova_tukey_table_qualitative1, format = "pandoc", caption = summary_title_qualitative)
           two_way_anova_tukey_print_summary2 = kable(two_way_anova_tukey_table_qualitative2, format = "pandoc", caption = summary_title_qualitative2)
+          two_way_anova_tukey_print_summary_pair = kable(two_way_anova_tukey_table_qualitative_pair, format = "pandoc", caption = summary_title_qualitative_pair)
 
           two_way_anova_print_summary = kable(two_way_anova_table, format = "pandoc", caption = "Two-Way Anova Summary (Log)")
           two_way_anova_print_list = list(two_way_anova_print_summary,
                                           two_way_anova_tukey_print_summary1,
-                                          two_way_anova_tukey_print_summary2)
+                                          two_way_anova_tukey_print_summary2,
+                                          two_way_anova_tukey_print_summary_pair)
 
           ## Résultat Two-Way ANOVA | Tukey | Log
           return(two_way_anova_print_list)
