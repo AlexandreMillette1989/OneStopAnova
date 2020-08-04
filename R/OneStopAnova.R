@@ -54,10 +54,46 @@ OneStopAnova = function(Quantitative, Qualitative, Qualitative2, var_names = c(Q
 
       ## 1. Supposition homoscédasticité
       plot(residuals(one_way_anova)~fitted(one_way_anova), ylab = "Résidus", xlab = "Valeurs prédites", main = "Résidus vs valeurs prédites", cex.lab = 1.2)
+      levene = leveneTest(Quantitative ~ Qualitative)
+      levene = round((levene),3)
+      options(knitr.kable.NA = "")
+      if(levene$`Pr(>F)`[1] <= 0.05){
+        levene_title = "One-Way Anova Levene's Test for Homogeneity of Variance (center = median) \
+        \
+        WARNING: Evidence suggests that the variance across groups is statistically significantly different. \
+        WARNING: We cannot assume the homogeneity of variances in the different treatment groups."
+      } else {
+        levine_title = "One-Way Anova Levene's Test for Homogeneity of Variance (center = median) \
+        \
+        There is no evidence to suggest that the variance across groups is statistically significantly different. \
+        We can assume the homogeneity of variances in the different treatment groups."
+      }
+      levene_kable = kable(levene, caption = levine_title,
+                           format = "pandoc")
 
       ## 2. Supposition de normalité des résidus
       qqnorm(residuals(one_way_anova), ylab = "Quantiles observés", xlab = "Quantiles théoriques", main = "Graphique quantile-quantile", cex.lab = 1.2)
       qqline(residuals(one_way_anova))
+
+      one_way_anova_residuals = residuals(object = one_way_anova)
+      anderson_darling = ad.test(one_way_anova_residuals)
+      anderson_darling_table = cbind(anderson_darling$statistic, anderson_darling$p.value)
+      colnames(anderson_darling_table) = c("Test Statistic", "P-value")
+      rownames(anderson_darling_table) = c()
+      anderson_darling_table = round((anderson_darling_table),3)
+      if(anderson_darling$p.value <= 0.05){
+        ad_title = "One-Way Anova Anderson-Darling Normality Test \
+        \
+        WARNING: We have sufficient evidence to reject the null hypothesis.
+        WARNING: It is safe to say that the data doesn't follow a normal distribution."
+      } else {
+        ad_title = "One-Way Anova Anderson-Darling Normality Test \
+        \
+        We do not have sufficient evidence to reject the null hypothesis.
+        It is safe to say that the data follows a normal distribution."
+      }
+      anderson_darling_kable = kable(anderson_darling_table, caption = ad_title, format = "pandoc")
+
 
       ## Transform One-Way Anova To DataFrame For Kable Summary
       one_way_anova_table = data.frame(unclass(summary(one_way_anova)))
@@ -99,7 +135,12 @@ OneStopAnova = function(Quantitative, Qualitative, Qualitative2, var_names = c(Q
       if(missing(Tukey)||(Tukey == FALSE)){
 
         ## Résultat One-Way ANOVA | No Tukey | No Log
-        return(kable(one_way_anova_table, format = "pandoc", caption = "One-Way Anova Summary"))
+        one_way_anova_kable = kable(one_way_anova_table, format = "pandoc", caption = "One-Way Anova Summary")
+        one_way_anova_summary = list(levene_kable,
+                                     anderson_darling_kable,
+                                     one_way_anova_kable)
+
+        return(one_way_anova_summary)
       }
 
       ## Tukey == TRUE
@@ -149,7 +190,9 @@ OneStopAnova = function(Quantitative, Qualitative, Qualitative2, var_names = c(Q
         ## Listing the summaries
         one_way_anova_tukey_print_summary = kable(one_way_anova_tukey_table, format = "pandoc", caption = summary_title_qualitative)
         one_way_anova_print_summary = kable(one_way_anova_table, format = "pandoc", caption = summary_title_qualitative2)
-        one_way_anova_print_list = list(one_way_anova_print_summary,
+        one_way_anova_print_list = list(levene_kable,
+                                        anderson_darling_kable,
+                                        one_way_anova_print_summary,
                                         one_way_anova_tukey_print_summary)
 
         ## Résultat One-Way ANOVA | Tukey
@@ -164,10 +207,45 @@ OneStopAnova = function(Quantitative, Qualitative, Qualitative2, var_names = c(Q
 
       ## 1. Supposition homoscédasticité
       plot(residuals(two_way_anova)~fitted(two_way_anova), ylab = "Résidus", xlab = "Valeurs prédites", main = "Résidus vs valeurs prédites", cex.lab = 1.2)
+      levene = leveneTest(Quantitative ~ Qualitative:Qualitative2)
+      levene = round((levene),3)
+      options(knitr.kable.NA = "")
+      if(levene$`Pr(>F)`[1] <= 0.05){
+        levene_title = "Two-Way Anova Levene's Test for Homogeneity of Variance (center = median) \
+        \
+        WARNING: Evidence suggests that the variance across groups is statistically significantly different. \
+        WARNING: We cannot assume the homogeneity of variances in the different treatment groups."
+      } else {
+        levine_title = "Two-Way Anova Levene's Test for Homogeneity of Variance (center = median) \
+        \
+        There is no evidence to suggest that the variance across groups is statistically significantly different. \
+        We can assume the homogeneity of variances in the different treatment groups."
+      }
+      levene_kable = kable(levene, caption = levine_title,
+                           format = "pandoc")
 
       ## 2. Supposition de normalité des résidus
       qqnorm(residuals(two_way_anova), ylab = "Quantiles observés", xlab = "Quantiles théoriques", main = "Graphique quantile-quantile", cex.lab = 1.2)
       qqline(residuals(two_way_anova))
+
+      two_way_anova_residuals = residuals(object = two_way_anova)
+      anderson_darling = ad.test(two_way_anova_residuals)
+      anderson_darling_table = cbind(anderson_darling$statistic, anderson_darling$p.value)
+      colnames(anderson_darling_table) = c("Test Statistic", "P-value")
+      rownames(anderson_darling_table) = c()
+      anderson_darling_table = round((anderson_darling_table),3)
+      if(anderson_darling$p.value <= 0.05){
+        ad_title = "Two-Way Anova Anderson-Darling Normality Test \
+        \
+        WARNING: We have sufficient evidence to reject the null hypothesis.
+        WARNING: It is safe to say that the data doesn't follow a normal distribution."
+      } else {
+        ad_title = "Two-Way Anova Anderson-Darling Normality Test \
+        \
+        We do not have sufficient evidence to reject the null hypothesis.
+        It is safe to say that the data follows a normal distribution."
+      }
+      anderson_darling_kable = kable(anderson_darling_table, caption = ad_title, format = "pandoc")
 
       ## Transform Two-Way Anova To DataFrame For Kable Summary
       two_way_anova_table = data.frame(unclass(summary(two_way_anova)))
@@ -208,7 +286,11 @@ OneStopAnova = function(Quantitative, Qualitative, Qualitative2, var_names = c(Q
       if(missing(Tukey)||(Tukey == FALSE)){
 
         ## Résultat Two-Way ANOVA | No Tukey | No Log
-        return(kable(two_way_anova_table, format = "pandoc", caption = "Two-Way Anova Summary"))
+        two_way_anova_kable = kable(two_way_anova_table, format = "pandoc", caption = "Two-Way Anova Summary")
+        two_way_anova_summary = list(levene_kable,
+                                   anderson_darling_kable,
+                                   two_way_anova_kable)
+        return(two_way_anova_summary)
       }
 
       ## Tukey == TRUE
@@ -327,7 +409,9 @@ OneStopAnova = function(Quantitative, Qualitative, Qualitative2, var_names = c(Q
         two_way_anova_tukey_print_summary2 = kable(two_way_anova_tukey_table_qualitative2, format = "pandoc", caption = summary_title_qualitative2)
         two_way_anova_tukey_print_summary_pair = kable(two_way_anova_tukey_table_qualitative_pair, format = "pandoc", caption = summary_title_qualitative_pair)
         two_way_anova_print_summary = kable(two_way_anova_table, format = "pandoc", caption = "Two-Way Anova Summary")
-        two_way_anova_print_list = list(two_way_anova_print_summary,
+        two_way_anova_print_list = list(levene_kable,
+                                        anderson_darling_kable,
+                                        two_way_anova_print_summary,
                                         two_way_anova_tukey_print_summary1,
                                         two_way_anova_tukey_print_summary2,
                                         two_way_anova_tukey_print_summary_pair)
@@ -350,9 +434,45 @@ OneStopAnova = function(Quantitative, Qualitative, Qualitative2, var_names = c(Q
         ## 1. Supposition homoscédasticité
         plot(residuals(one_way_anova)~fitted(one_way_anova), ylab = "Résidus", xlab = "Valeurs prédites", main = "Résidus vs valeurs prédites (Log)", cex.lab = 1.2)
 
+        levene = leveneTest(Quantitative ~ Qualitative)
+        levene = round((levene),3)
+        options(knitr.kable.NA = "")
+        if(levene$`Pr(>F)`[1] <= 0.05){
+          levene_title = "One-Way Anova Levene's Test for Homogeneity of Variance (center = median) (Log)\
+        \
+        WARNING: Evidence suggests that the variance across groups is statistically significantly different. \
+        WARNING: We cannot assume the homogeneity of variances in the different treatment groups."
+        } else {
+          levine_title = "One-Way Anova Levene's Test for Homogeneity of Variance (center = median) (Log)\
+        \
+        There is no evidence to suggest that the variance across groups is statistically significantly different. \
+        We can assume the homogeneity of variances in the different treatment groups."
+        }
+        levene_kable = kable(levene, caption = levine_title,
+                             format = "pandoc")
+
         ## 2. Supposition de normalité des résidus
         qqnorm(residuals(one_way_anova), ylab = "Quantiles observés", xlab = "Quantiles théoriques", main = "Graphique quantile-quantile (Log)", cex.lab = 1.2)
         qqline(residuals(one_way_anova))
+
+        one_way_anova_residuals = residuals(object = one_way_anova)
+        anderson_darling = ad.test(one_way_anova_residuals)
+        anderson_darling_table = cbind(anderson_darling$statistic, anderson_darling$p.value)
+        colnames(anderson_darling_table) = c("Test Statistic", "P-value")
+        rownames(anderson_darling_table) = c()
+        anderson_darling_table = round((anderson_darling_table),3)
+        if(anderson_darling$p.value <= 0.05){
+          ad_title = "One-Way Anova Anderson-Darling Normality Test (Log)\
+        \
+        WARNING: We have sufficient evidence to reject the null hypothesis.
+        WARNING: It is safe to say that the data doesn't follow a normal distribution."
+        } else {
+          ad_title = "One-Way Anova Anderson-Darling Normality Test (Log)\
+        \
+        We do not have sufficient evidence to reject the null hypothesis.
+        It is safe to say that the data follows a normal distribution."
+        }
+        anderson_darling_kable = kable(anderson_darling_table, caption = ad_title, format = "pandoc")
 
         ## Transform One-Way Anova To DataFrame For Kable Summary
         one_way_anova_table = data.frame(unclass(summary(one_way_anova)))
@@ -393,7 +513,11 @@ OneStopAnova = function(Quantitative, Qualitative, Qualitative2, var_names = c(Q
         ## Tukey == FALSE
         if(missing(Tukey)||(Tukey == FALSE)){
           ## Résultat One-Way ANOVA | No Tukey | Log
-          return(kable(one_way_anova_table, format = "pandoc", caption = "One-Way Anova Summary (Log)"))
+          one_way_anova_kable = kable(one_way_anova_table, format = "pandoc", caption = "One-Way Anova Summary (Log)")
+          one_way_anova_summary = list(levene_kable,
+                                       anderson_darling_kable,
+                                       one_way_anova_kable)
+          return(one_way_anova_summary)
         }
 
         ## Tukey == TRUE
@@ -444,7 +568,9 @@ OneStopAnova = function(Quantitative, Qualitative, Qualitative2, var_names = c(Q
 
           one_way_anova_tukey_print_summary = kable(one_way_anova_tukey_table, format = "pandoc", caption = summary_title_qualitative)
           one_way_anova_print_summary = kable(one_way_anova_table, format = "pandoc", caption = summary_title_qualitative2)
-          one_way_anova_print_list = list(one_way_anova_print_summary,
+          one_way_anova_print_list = list(levene_kable,
+                                          anderson_darling_kable,
+                                          one_way_anova_print_summary,
                                           one_way_anova_tukey_print_summary)
 
           ## Résultat One-Way ANOVA | Tukey  | Log
@@ -458,10 +584,45 @@ OneStopAnova = function(Quantitative, Qualitative, Qualitative2, var_names = c(Q
 
         ## 1. Supposition homoscédasticité
         plot(residuals(two_way_anova)~fitted(two_way_anova), ylab = "Résidus", xlab = "Valeurs prédites", main = "Résidus vs valeurs prédites (Log)", cex.lab = 1.2)
+        levene = leveneTest(Quantitative ~ Qualitative:Qualitative2)
+        levene = round((levene),3)
+        options(knitr.kable.NA = "")
+        if(levene$`Pr(>F)`[1] <= 0.05){
+          levene_title = "Two-Way Anova Levene's Test for Homogeneity of Variance (center = median) (Log)\
+        \
+        WARNING: Evidence suggests that the variance across groups is statistically significantly different. \
+        WARNING: We cannot assume the homogeneity of variances in the different treatment groups."
+        } else {
+          levine_title = "Two-Way Anova Levene's Test for Homogeneity of Variance (center = median) (Log)\
+        \
+        There is no evidence to suggest that the variance across groups is statistically significantly different. \
+        We can assume the homogeneity of variances in the different treatment groups."
+        }
+        levene_kable = kable(levene, caption = levine_title,
+                             format = "pandoc")
 
         ## 2. Supposition de normalité des résidus
         qqnorm(residuals(two_way_anova), ylab = "Quantiles observés", xlab = "Quantiles théoriques", main = "Graphique quantile-quantile (Log)", cex.lab = 1.2)
         qqline(residuals(two_way_anova))
+
+        two_way_anova_residuals = residuals(object = two_way_anova)
+        anderson_darling = ad.test(two_way_anova_residuals)
+        anderson_darling_table = cbind(anderson_darling$statistic, anderson_darling$p.value)
+        colnames(anderson_darling_table) = c("Test Statistic", "P-value")
+        rownames(anderson_darling_table) = c()
+        anderson_darling_table = round((anderson_darling_table),3)
+        if(anderson_darling$p.value <= 0.05){
+          ad_title = "Two-Way Anova Anderson-Darling Normality Test (Log)\
+        \
+        WARNING: We have sufficient evidence to reject the null hypothesis.
+        WARNING: It is safe to say that the data doesn't follow a normal distribution."
+        } else {
+          ad_title = "Two-Way Anova Anderson-Darling Normality Test (Log)\
+        \
+        We do not have sufficient evidence to reject the null hypothesis.
+        It is safe to say that the data follows a normal distribution."
+        }
+        anderson_darling_kable = kable(anderson_darling_table, caption = ad_title, format = "pandoc")
 
         ## Transform Two-Way Anova To DataFrame For Kable Summary
         two_way_anova_table = data.frame(unclass(summary(two_way_anova)))
@@ -502,7 +663,11 @@ OneStopAnova = function(Quantitative, Qualitative, Qualitative2, var_names = c(Q
         if(missing(Tukey)||(Tukey == FALSE)){
 
           ## Résultat Two-Way ANOVA | No Tukey | Log
-          return(kable(two_way_anova_table, format = "pandoc", caption = "Two-Way Anova Summary (Log)"))
+          two_way_anova_kable = kable(two_way_anova_table, format = "pandoc", caption = "Two-Way Anova Summary (Log)")
+          two_way_anova_summary = list(levene_kable,
+                                       anderson_darling_kable,
+                                       two_way_anova_kable)
+          return(two_way_anova_summary)
         }
 
         ## Tukey == TRUE
@@ -622,7 +787,9 @@ OneStopAnova = function(Quantitative, Qualitative, Qualitative2, var_names = c(Q
           two_way_anova_tukey_print_summary_pair = kable(two_way_anova_tukey_table_qualitative_pair, format = "pandoc", caption = summary_title_qualitative_pair)
 
           two_way_anova_print_summary = kable(two_way_anova_table, format = "pandoc", caption = "Two-Way Anova Summary (Log)")
-          two_way_anova_print_list = list(two_way_anova_print_summary,
+          two_way_anova_print_list = list(levene_kable,
+                                          anderson_darling_kable,
+                                          two_way_anova_print_summary,
                                           two_way_anova_tukey_print_summary1,
                                           two_way_anova_tukey_print_summary2,
                                           two_way_anova_tukey_print_summary_pair)
