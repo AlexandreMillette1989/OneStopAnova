@@ -219,6 +219,9 @@ OneStopAnova = function(Quantitative, Qualitative, Qualitative2, var_names = c(Q
       levene = leveneTest(Quantitative ~ Qualitative:Qualitative2)
       levene = round((levene),3)
       options(knitr.kable.NA = "")
+      levene = levene %>%
+        mutate(
+          `Pr(>F)` = if_else(`Pr(>F)` == 0, 0.001, `Pr(>F)`))
       if(levene$`Pr(>F)`[1] <= 0.05){
         levene_title = "Two-Way Anova Levene's Test for Homogeneity of Variance (center = median) \
         \
@@ -240,9 +243,14 @@ OneStopAnova = function(Quantitative, Qualitative, Qualitative2, var_names = c(Q
       two_way_anova_residuals = residuals(object = two_way_anova)
       anderson_darling = ad.test(two_way_anova_residuals)
       anderson_darling_table = cbind(anderson_darling$statistic, anderson_darling$p.value)
-      colnames(anderson_darling_table) = c("Test Statistic", "P-value")
+      colnames(anderson_darling_table) = c("Test Statistic", "p")
       rownames(anderson_darling_table) = c()
       anderson_darling_table = round((anderson_darling_table),3)
+      anderson_darling_table = as.data.frame(anderson_darling_table)
+      anderson_darling_table = anderson_darling_table %>%
+        mutate(
+          p = if_else(p == 0, 0.001, p))
+      colnames(anderson_darling_table) = c("Test Statistic", "P-Value")
       if(anderson_darling$p.value <= 0.05){
         ad_title = "Two-Way Anova Anderson-Darling Normality Test \
         \
@@ -607,6 +615,10 @@ OneStopAnova = function(Quantitative, Qualitative, Qualitative2, var_names = c(Q
         levene = leveneTest(Quantitative_Log ~ Qualitative:Qualitative2)
         levene = round((levene),3)
         options(knitr.kable.NA = "")
+        levene = levene %>%
+          mutate(
+            `Pr(>F)` = if_else(`Pr(>F)` == 0, 0.001, `Pr(>F)`))
+
         if(levene$`Pr(>F)`[1] <= 0.05){
           levene_title = "Two-Way Anova Levene's Test for Homogeneity of Variance (center = median) (Log)\
         \
@@ -628,9 +640,15 @@ OneStopAnova = function(Quantitative, Qualitative, Qualitative2, var_names = c(Q
         two_way_anova_residuals = residuals(object = two_way_anova)
         anderson_darling = ad.test(two_way_anova_residuals)
         anderson_darling_table = cbind(anderson_darling$statistic, anderson_darling$p.value)
-        colnames(anderson_darling_table) = c("Test Statistic", "P-value")
+        colnames(anderson_darling_table) = c("Test Statistic", "p")
         rownames(anderson_darling_table) = c()
         anderson_darling_table = round((anderson_darling_table),3)
+        anderson_darling_table = as.data.frame(anderson_darling_table)
+        anderson_darling_table = anderson_darling_table %>%
+          mutate(
+            p = if_else(p == 0, 0.001, p))
+        colnames(anderson_darling_table) = c("Test Statistic", "P-Value")
+
         if(anderson_darling$p.value <= 0.05){
           ad_title = "Two-Way Anova Anderson-Darling Normality Test (Log)\
         \
