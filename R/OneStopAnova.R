@@ -63,12 +63,12 @@ OneStopAnova = function(Quantitative, Qualitative, Qualitative2, var_names = c(Q
         WARNING: Evidence suggests that the variance across groups is statistically significantly different. \
         WARNING: We cannot assume the homogeneity of variances in the different treatment groups."
       } else {
-        levine_title = "One-Way Anova Levene's Test for Homogeneity of Variance (center = median) \
+        levene_title = "One-Way Anova Levene's Test for Homogeneity of Variance (center = median) \
         \
         There is no evidence to suggest that the variance across groups is statistically significantly different. \
         We can assume the homogeneity of variances in the different treatment groups."
       }
-      levene_kable = kable(levene, caption = levine_title,
+      levene_kable = kable(levene, caption = levene_title,
                            format = "pandoc")
 
       ## 2. Supposition de normalité des résidus
@@ -216,12 +216,12 @@ OneStopAnova = function(Quantitative, Qualitative, Qualitative2, var_names = c(Q
         WARNING: Evidence suggests that the variance across groups is statistically significantly different. \
         WARNING: We cannot assume the homogeneity of variances in the different treatment groups."
       } else {
-        levine_title = "Two-Way Anova Levene's Test for Homogeneity of Variance (center = median) \
+        levene_title = "Two-Way Anova Levene's Test for Homogeneity of Variance (center = median) \
         \
         There is no evidence to suggest that the variance across groups is statistically significantly different. \
         We can assume the homogeneity of variances in the different treatment groups."
       }
-      levene_kable = kable(levene, caption = levine_title,
+      levene_kable = kable(levene, caption = levene_title,
                            format = "pandoc")
 
       ## 2. Supposition de normalité des résidus
@@ -443,12 +443,12 @@ OneStopAnova = function(Quantitative, Qualitative, Qualitative2, var_names = c(Q
         WARNING: Evidence suggests that the variance across groups is statistically significantly different. \
         WARNING: We cannot assume the homogeneity of variances in the different treatment groups."
         } else {
-          levine_title = "One-Way Anova Levene's Test for Homogeneity of Variance (center = median) (Log)\
+          levene_title = "One-Way Anova Levene's Test for Homogeneity of Variance (center = median) (Log)\
         \
         There is no evidence to suggest that the variance across groups is statistically significantly different. \
         We can assume the homogeneity of variances in the different treatment groups."
         }
-        levene_kable = kable(levene, caption = levine_title,
+        levene_kable = kable(levene, caption = levene_title,
                              format = "pandoc")
 
         ## 2. Supposition de normalité des résidus
@@ -593,12 +593,12 @@ OneStopAnova = function(Quantitative, Qualitative, Qualitative2, var_names = c(Q
         WARNING: Evidence suggests that the variance across groups is statistically significantly different. \
         WARNING: We cannot assume the homogeneity of variances in the different treatment groups."
         } else {
-          levine_title = "Two-Way Anova Levene's Test for Homogeneity of Variance (center = median) (Log)\
+          levene_title = "Two-Way Anova Levene's Test for Homogeneity of Variance (center = median) (Log)\
         \
         There is no evidence to suggest that the variance across groups is statistically significantly different. \
         We can assume the homogeneity of variances in the different treatment groups."
         }
-        levene_kable = kable(levene, caption = levine_title,
+        levene_kable = kable(levene, caption = levene_title,
                              format = "pandoc")
 
         ## 2. Supposition de normalité des résidus
