@@ -2,3 +2,7 @@
 
 export(OneStopAnova)
 export(OneStopAnova_IC)
+import(car)
+import(dplyr)
+import(knitr)
+import(nortest)
