@@ -10,6 +10,6 @@ Encoding: UTF-8
 LazyData: true
 Import: dplyr, 
         knitr,
-	car,
-	nortest
+        car,
+        nortest
 RoxygenNote: 7.1.0

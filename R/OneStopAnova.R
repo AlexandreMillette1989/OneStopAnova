@@ -11,7 +11,6 @@
 #'              Log = TRUE/FALSE,
 #'              Tukey = TRUE/FALSE)
 #'
-#'
 #' @param Quantitative: The Quantitative variable
 #'
 #' @param Qualitative: The Qualitative variable
@@ -37,19 +36,6 @@
 #' @export
 
 OneStopAnova = function(Quantitative, Qualitative, Qualitative2, var_names = c(Quantitative = "", Qualitative = "", Qualitative2 = "", ...), Log = c(TRUE, FALSE), Tukey = c(TRUE, FALSE)){
-  # Specify dependencies
-  packages = c("knitr", "dplyr", "car", "nortest")
-
-  ## Install and Load packages
-  package.check = lapply(
-    packages,
-    FUN = function(x){
-      if(!require(x, character.only = TRUE)){
-        install.packages(x, dependencies = TRUE)
-        library(x, character.only = TRUE)
-      }
-    }
-  )
 
   ## Var names
 
