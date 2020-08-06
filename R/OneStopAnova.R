@@ -11,6 +11,11 @@
 #'              Log = TRUE/FALSE,
 #'              Tukey = TRUE/FALSE)
 #'
+#' @import car
+#' @import knitr
+#' @import dplyr
+#' @import nortest
+#'
 #' @param Quantitative: The Quantitative variable
 #'
 #' @param Qualitative: The Qualitative variable
