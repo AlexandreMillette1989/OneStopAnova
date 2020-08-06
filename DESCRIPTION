@@ -9,5 +9,7 @@ License: GPL-2
 Encoding: UTF-8
 LazyData: true
 Import: dplyr, 
-        knitr
+        knitr,
+	car,
+	nortest
 RoxygenNote: 7.1.0
