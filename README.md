@@ -81,6 +81,19 @@ calcium = read.table(file.choose(), header = TRUE)
 **Two-Way Anova | Log | Tukey**
 
 **OneStopAnova()**
+
+- Quantative = nom de la variable quantitative;
+
+- Qualitative = nom de la variable qualitative;
+
+- Qualitative2 = nom de la deuxième variable qualitative (Two-Way Anova);
+
+- var_names = le nom que vous souhaitez donner à vos variables;
+
+- Log (optionnel) = FALSE par défaut. Si l'argument est TRUE, la fonction effectue une transformation logarithmique de la variable quantitative. 
+
+- Tukey (optionnel) = FALSE par défaut. Si l'argument est TRUE, la fonction effectue un test de Tukey sur les variables sélectionnées. 
+
 ```
 OneStopAnova(Quantitative = calcium$Concentration,
              Qualitative = calcium$Trait,
