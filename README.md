@@ -84,7 +84,7 @@ OneStopAnova(Quantitative = calcium$Concentration,
              Log = TRUE,
              Tukey = TRUE)
 ```
-![Vérification des suppositions](https://imgur.com/a/mOEoCZh)
+![Vérification des suppositions](images/OneStopAnova_1.jpg)
 
 **OneStopAnova_IC()**
 ```
