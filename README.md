@@ -33,21 +33,13 @@ Par défaut, le package devrait vous offrir l'option de télécharger ou de mett
   packages = c("knitr", "dplyr", "car", "nortest")
              
   package.check <- lapply(
-  
     packages,
-    
     FUN = function(x) {
-    
-     if (!require(x, character.only = TRUE)) {
-     
-        install.packages(x, dependencies = TRUE)
-        
-       library(x, character.only = TRUE)
-       
-     }
-     
+    if (!require(x, character.only = TRUE)) {
+    install.packages(x, dependencies = TRUE)
+    library(x, character.only = TRUE)
+    }
    }
-   
   )
 
 # Exemple 7.1 (Module 7) pages 7 à 24
