@@ -84,7 +84,10 @@ OneStopAnova(Quantitative = calcium$Concentration,
              Log = TRUE,
              Tukey = TRUE)
 ```
+**Cliquez sur les images pour agrandir**
 ![Vérification des suppositions](Images/OneStopAnova_1.jpg)
+
+![Sommaire Anova et Tukey](Images/OneStopAnova_2.jpg)
 
 **OneStopAnova_IC()**
 ```
@@ -92,6 +95,9 @@ calcium$log.concentration = log(calcium$Concentration)
 aov.log = aov(log.concentration ~ Trait + Sexe + Trait:Sexe, data = calcium)
 OneStopAnova_IC(aov = aov.log, p = 0.025)
 ```
+**Cliquez sur l'image pour agrandir**
+
+![Intervalle de confiance](Images/OneStopAnova_3.jpg)
 
 **Pour obtenir de l'aide quant aux arguments de la fonction, vous pouvez faire:**
 ```
