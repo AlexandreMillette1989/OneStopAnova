@@ -22,14 +22,19 @@ En date d'août 2020, le package offre deux fonctions, soit: **OneStopAnova()** 
     
         - Test de normalité d'Anderson-Darling avec une explication textuelle vous signifiant si les conditions sont respectées. 
         
-        - Graphique quantile-quantile.  
+        - Graphique quantile-quantile.
+        
         
   - Création d'un tableau sommaire des résultats du test Anova.
   
-  - (OPTIONNEL) Création d'un tableau sommaire pour le test de Tukey.
+  - (OPTIONNEL) Création d'un tableau sommaire pour le test de Tukey:
+        
+        - Par défaut, cet argument est FALSE. En sélectionnant TRUE, vous effectuerez un test de Tukey sur les variables sélectionnées.
+      
   
-  - (OPTIONNEL) Transformation logarithmique de la variable quantitative.
+  - (OPTIONNEL) Transformation logarithmique de la variable quantitative:
   
+         - Par défaut, cet argument est FALSE. En sélectionnant TRUE, vous effectuerez une transformation logarithmique de la variable quantitative.
   
 **OneStopAnova_IC():**
 
@@ -51,7 +56,9 @@ install_github("OneStopAnova")
 library(OneStopAnova)
 ```
   
-Par défaut, le package devrait vous offrir l'option de télécharger ou de mettre à jour les dépendences nécessaires à son fonctionnement. Vous pouvez ignorer les mises à jour en sélectionnant l'option 3 (None).
+Par défaut, le package devrait vous offrir l'option de télécharger ou de mettre à jour les dépendences nécessaires à son fonctionnement. 
+
+Vous pouvez ignorer les mises à jour en sélectionnant l'option 3 (None).
 
 **Si vous rencontrez une erreur lors de l'installation ou de la mise à jour d'une des dépendences, vous pouvez effectuer le code suivant:**
 ```
@@ -89,6 +96,7 @@ OneStopAnova(Quantitative = calcium$Concentration,
 Le *Graphique 1* présente un exemple fictif de vérification des suppositions. 
 
 Lorsque les tests présentent des résultats P <= 0.05, un message contenant la mention **Warning** apparaît pour signaler un problème au niveau des suppositions.
+
 Lorsque les test présentent des résultats P > 0.05, un message sans avertissement apparaît pour signaler que vous respectez les suppositions.
 
 **Graphique 1**
@@ -107,7 +115,9 @@ OneStopAnova_IC(aov = aov.log, p = 0.025)
 ```
 **Cliquez sur l'image pour agrandir**
 
+Le *Graphique 3* renvoie à un data frame présentant la moyenne (fit) et l'intervalle de confiance.
 
+Vous pouvez donc créer un objet à partir de cette fonction pour effectuer votre graphique d'intervalle de confiance subséquemment. 
 
 ![Intervalle de confiance](Images/OneStopAnova_3.jpg)
 
