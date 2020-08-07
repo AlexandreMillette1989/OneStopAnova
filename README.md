@@ -64,8 +64,10 @@ package.check <- lapply(
 ```
 calcium = read.table(file.choose(), header = TRUE)
 
-OneStopAnova()
-Two-Way Anova | Log | Tukey
+**Two-Way Anova | Log | Tukey**
+
+**OneStopAnova**
+
 OneStopAnova(Quantitative = calcium$Concentration,
              Qualitative = calcium$Trait,
              Qualitative2 = calcium$Sexe,
@@ -75,7 +77,8 @@ OneStopAnova(Quantitative = calcium$Concentration,
              Log = TRUE,
              Tukey = TRUE)
 
-OneStopAnova_IC()
+**OneStopAnova_IC()**
+
 calcium$log.concentration = log(calcium$Concentration)
 aov.log = aov(log.concentration ~ Trait + Sexe + Trait:Sexe, data = calcium)
 OneStopAnova_IC(aov = aov.log, p = 0.025)
