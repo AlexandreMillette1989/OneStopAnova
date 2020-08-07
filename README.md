@@ -46,7 +46,7 @@ library(OneStopAnova)
   
 Par défaut, le package devrait vous offrir l'option de télécharger ou de mettre à jour les dépendences nécessaires à son fonctionnement. Vous pouvez ignorer les mises à jour en sélectionnant l'option 3 (None).
 
-**Si vous rencontrez une erreur lors de l'installation ou de la mise à jour d'une dépendences, vous pouvez effectuer le code suivant:**
+**Si vous rencontrez une erreur lors de l'installation ou de la mise à jour d'une des dépendences, vous pouvez effectuer le code suivant:**
 ```
 packages = c("knitr", "dplyr", "car", "nortest")
              
