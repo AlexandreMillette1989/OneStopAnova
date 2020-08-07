@@ -1,6 +1,8 @@
 # SCI1018 One-Way Anova | Two-Way Anova
 
-**OneStopAnova** est un package réalisé dans le cadre du cours **SCI1018 - Statistiques avec R** de la TÉLUQ pour les cours traitant d'Anova. En date d'août 2020, le package offre deux fonctions, soit: OneStopAnova() et OneStopAnova_IC(). 
+**OneStopAnova** est un package réalisé dans le cadre du cours **SCI1018 - Statistiques avec R** de la TÉLUQ pour les cours traitant d'Anova. 
+
+En date d'août 2020, le package offre deux fonctions, soit: **OneStopAnova()** et **OneStopAnova_IC()**. 
 
 
 **OneStopAnova():**
