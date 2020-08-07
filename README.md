@@ -42,14 +42,14 @@ En date d'août 2020, le package offre deux fonctions, soit: **OneStopAnova()** 
 
 # Installation du package OneStopAnova
 
-Pour installer ce packages, vous devrez d'abord installer le package devtools:
+Pour installer ce package, vous devrez d'abord installer le package devtools:
 ```
 install.packages("devtools")
   
 library(devtools)
 ```
 
-Par la suite, vous serez en mesure d'importer des packages à partir de GitHub:
+Par la suite, vous serez en mesure d'importer le package à partir de GitHub:
 ```
 install_github("OneStopAnova")
   
