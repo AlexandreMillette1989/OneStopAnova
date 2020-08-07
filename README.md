@@ -1,4 +1,4 @@
-#SCI1018 One-Way Anova | Two-Way Anova
+# SCI1018 One-Way Anova | Two-Way Anova
 
 OneStopAnova est un package réalisé dans le cadre du cours SCI1018 - Statistiques avec R de la TÉLUQ pour les cours traitant d'Anova. En date d'août 2020, le package offre deux fonctions, soit: OneStopAnova() et OneStopAnova_IC(). 
 
@@ -22,21 +22,32 @@ Pour installer ce packages, vous devrez d'abord installer le package devtools:
   library(devtools)
 
 Par la suite, vous serez en mesure d'importer des packages à partir de GitHub:
+
   install_github("OneStopAnova")
+  
   library(OneStopAnova)
   
 Par défaut, le package devrait vous offrir l'option de télécharger ou de mettre à jour les dépendences nécessaires à son fonctionnement. Vous pouvez ignorer les mises à jour en sélectionnant l'option 3 (None)
 ** Si vous rencontrez une erreur lors de l'installation ou de la mise à jour d'une dépendences, vous pouvez effectuer le code suivant **: 
-  packages = c("knitr", "dplyr",
-             "car", "nortest")
+
+  packages = c("knitr", "dplyr", "car", "nortest")
+             
   package.check <- lapply(
+  
     packages,
+    
     FUN = function(x) {
+    
      if (!require(x, character.only = TRUE)) {
+     
         install.packages(x, dependencies = TRUE)
+        
        library(x, character.only = TRUE)
+       
      }
+     
    }
+   
   )
 
 # Exemple 7.1 (Module 7) pages 7 à 24
