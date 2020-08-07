@@ -85,8 +85,18 @@ OneStopAnova(Quantitative = calcium$Concentration,
              Tukey = TRUE)
 ```
 **Cliquez sur les images pour agrandir**
+
+Le *Graphique 1* présente un exemple fictif de vérification des suppositions. 
+
+Lorsque les tests présentent des résultats P <= 0.05, un message contenant la mention **Warning** apparaît pour signaler un problème au niveau des suppositions.
+Lorsque les test présentent des résultats P > 0.05, un message sans avertissement apparaît pour signaler que vous respectez les suppositions.
+
+**Graphique 1**
 ![Vérification des suppositions](Images/OneStopAnova_1.jpg)
 
+Le *Graphique 2* présente un sommaire du test Anova (Log) ainsi que les résultats du test de Tukey.
+
+**Graphique 2**
 ![Sommaire Anova et Tukey](Images/OneStopAnova_2.jpg)
 
 **OneStopAnova_IC()**
@@ -96,6 +106,8 @@ aov.log = aov(log.concentration ~ Trait + Sexe + Trait:Sexe, data = calcium)
 OneStopAnova_IC(aov = aov.log, p = 0.025)
 ```
 **Cliquez sur l'image pour agrandir**
+
+
 
 ![Intervalle de confiance](Images/OneStopAnova_3.jpg)
 
