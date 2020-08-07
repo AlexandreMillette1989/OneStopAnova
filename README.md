@@ -1,9 +1,10 @@
 # SCI1018 One-Way Anova | Two-Way Anova
 
-**OneStopAnova** est un package réalisé dans le cadre du cours **SCI1018 - Statistiques avec R** de la TÉLUQ pour les cours traitant d'Anova. 
+**OneStopAnova** est un package réalisé dans le cadre du cours **SCI1018 - Statistiques avec R** de la TÉLUQ pour les cours traitant d'Anova. L'objectif de ce package est de réduire substantiellement le nombre d'étapes de codification pour les futur(e)s étudiant(e)s.
 
 En date d'août 2020, le package offre deux fonctions, soit: **OneStopAnova()** et **OneStopAnova_IC()**. 
 
+# Brève description des opérations effectuées par le package
 
 **OneStopAnova():**
 
@@ -31,6 +32,8 @@ En date d'août 2020, le package offre deux fonctions, soit: **OneStopAnova()** 
 **OneStopAnova_IC():**
 
   - Fonction permettant d'obtenir directement l'intervalle de confiance.
+
+# Installation du package OneStopAnova
 
 Pour installer ce packages, vous devrez d'abord installer le package devtools:
 ```
