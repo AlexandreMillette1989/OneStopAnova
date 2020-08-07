@@ -29,12 +29,12 @@ En date d'août 2020, le package offre deux fonctions, soit: **OneStopAnova()** 
   
   - (OPTIONNEL) Création d'un tableau sommaire pour le test de Tukey:
         
-        - Par défaut, cet argument est FALSE. En sélectionnant TRUE, vous effectuerez un test de Tukey sur les variables sélectionnées.
+       - Par défaut, cet argument est FALSE. En sélectionnant TRUE, vous effectuerez un test de Tukey sur les variables sélectionnées.
       
   
   - (OPTIONNEL) Transformation logarithmique de la variable quantitative:
   
-         - Par défaut, cet argument est FALSE. En sélectionnant TRUE, vous effectuerez une transformation logarithmique de la variable quantitative.
+       - Par défaut, cet argument est FALSE. En sélectionnant TRUE, vous effectuerez une transformation logarithmique de la variable quantitative.
   
 **OneStopAnova_IC():**
 
