@@ -2,14 +2,21 @@
 
 OneStopAnova est un package réalisé dans le cadre du cours SCI1018 - Statistiques avec R de la TÉLUQ pour les cours traitant d'Anova. En date d'août 2020, le package offre deux fonctions, soit: OneStopAnova() et OneStopAnova_IC(). 
 
+
 **OneStopAnova():**
 
   - Vérification des suppositions d'homoscédasticité et de normalité des résidus:
+  
     - Supposition d'homoscédasticité:
+    
         - Test de Levene pour l'homogénéité de la variance avec une explication textuelle vous signifiant si les conditions sont respectées.
+        
         - Graphique résidus vs valeurs prédites.
+        
     - Supposition de normalité des résidus:
+    
         - Test de normalité d'Anderson-Darling avec une explication textuelle vous signifiant si les conditions sont respectées. 
+        
         - Graphique quantile-quantile.  
         
   - Création d'un tableau sommaire des résultats du test Anova.
@@ -17,6 +24,7 @@ OneStopAnova est un package réalisé dans le cadre du cours SCI1018 - Statistiq
   - (OPTIONNEL) Création d'un tableau sommaire pour le test de Tukey.
   
   - (OPTIONNEL) Transformation logarithmique de la variable quantitative.
+  
   
 **OneStopAnova_IC():**
 
