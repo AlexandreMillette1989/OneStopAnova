@@ -1,4 +1,4 @@
-SCI1018 One-Way Anova | Two-Way Anova
+#SCI1018 One-Way Anova | Two-Way Anova
 
 OneStopAnova est un package réalisé dans le cadre du cours SCI1018 - Statistiques avec R de la TÉLUQ pour les cours traitant d'Anova. En date d'août 2020, le package offre deux fonctions, soit: OneStopAnova() et OneStopAnova_IC(). 
 
@@ -42,8 +42,8 @@ Par défaut, le package devrait vous offrir l'option de télécharger ou de mett
 # Exemple 7.1 (Module 7) pages 7 à 24
 calcium = read.table(file.choose(), header = TRUE)
 
-# OneStopAnova()
-# Two-Way Anova | Log | Tukey
+OneStopAnova()
+Two-Way Anova | Log | Tukey
 OneStopAnova(Quantitative = calcium$Concentration,
              Qualitative = calcium$Trait,
              Qualitative2 = calcium$Sexe,
@@ -53,11 +53,11 @@ OneStopAnova(Quantitative = calcium$Concentration,
              Log = TRUE,
              Tukey = TRUE)
 
-# OneStopAnova_IC()
+OneStopAnova_IC()
 calcium$log.concentration = log(calcium$Concentration)
 aov.log = aov(log.concentration ~ Trait + Sexe + Trait:Sexe, data = calcium)
 OneStopAnova_IC(aov = aov.log, p = 0.025)
 
-# Pour obtenir de l'aide quant aux arguments de la fonction, vous pouvez faire:
+Pour obtenir de l'aide quant aux arguments de la fonction, vous pouvez faire:
 ?OneStopAnova
 ?OneStopAnova_IC
