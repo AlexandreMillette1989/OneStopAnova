@@ -84,6 +84,8 @@ OneStopAnova(Quantitative = calcium$Concentration,
              Log = TRUE,
              Tukey = TRUE)
 ```
+![Vérification des suppositions](https://imgur.com/a/mOEoCZh)
+
 **OneStopAnova_IC()**
 ```
 calcium$log.concentration = log(calcium$Concentration)
