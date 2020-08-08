@@ -51,7 +51,7 @@ library(devtools)
 
 Par la suite, vous serez en mesure d'importer le package à partir de GitHub:
 ```
-install_github("OneStopAnova")
+install_github("AlexandreMillette1989/OneStopAnova")
   
 library(OneStopAnova)
 ```
