@@ -140,3 +140,5 @@ Vous pouvez donc créer un objet à partir de cette fonction pour effectuer votr
 
 ?OneStopAnova_IC
 ```
+
+**Pour obtenir de l'aide quant à l'utilisation du package ou concernant les erreurs, vous pouvez envoyez un courriel à: alexandre.millette1989@gmail.com**
