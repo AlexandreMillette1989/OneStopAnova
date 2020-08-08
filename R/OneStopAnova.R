@@ -23,13 +23,13 @@
 #'
 #' @param Tukey: FALSE by default. If TRUE, Tukey Test on the Selected Variables
 #'
-#' @import dplyr
+#' @importFrom dplyr mutate
 #'
-#' @import car
+#' @importFrom car leveneTest
 #'
-#' @import knitr
+#' @importFrom knitr kable
 #'
-#' @import nortest
+#' @importFrom nortest ad.test
 #'
 #' @examples
 #' OneStopAnova(Quantitative = "calcium$Concentration",

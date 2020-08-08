@@ -2,7 +2,7 @@
 
 export(OneStopAnova)
 export(OneStopAnova_IC)
-import(car)
-import(dplyr)
-import(knitr)
-import(nortest)
+importFrom(car,leveneTest)
+importFrom(dplyr,mutate)
+importFrom(knitr,kable)
+importFrom(nortest,ad.test)
