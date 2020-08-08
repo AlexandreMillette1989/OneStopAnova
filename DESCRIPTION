@@ -13,4 +13,5 @@ Imports:
     dplyr (>= 1.0.0),
     car (>= 3.0.2),
     nortest (>= 1.0.4),
-    knitr (>= 1.29)
+    knitr (>= 1.29),
+    usethis (>= 1.6.1)
