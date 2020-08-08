@@ -72,7 +72,8 @@ package.check <- lapply(
 ```
 # Exemple 7.1 (Module 7) pages 7 à 24
 **Lien pour télécharger la base de données:** <a href="https://raw.githubusercontent.com/AlexandreMillette1989/OneStopAnova/master/Data/calcium.txt" target="_blank">calcium.txt</a>
-**Faites un clic droit et sélectionnez enregistrer sous**
+
+**Faites un clic droit et sélectionnez enregistrer sous puis sélectionnez un emplacement où enregistrer le fichier**
 
 ```
 calcium = read.table(file.choose(), header = TRUE)
