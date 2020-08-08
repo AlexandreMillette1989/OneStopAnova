@@ -51,15 +51,11 @@ library(devtools)
 
 Par la suite, vous serez en mesure d'importer le package à partir de GitHub:
 ```
-install_github("AlexandreMillette1989/OneStopAnova")
+install_github("AlexandreMillette1989/OneStopAnova", force = TRUE, dependencies = TRUE, upgrade = FALSE)
   
 library(OneStopAnova)
 ```
   
-Par défaut, le package devrait vous offrir l'option de télécharger ou de mettre à jour les dépendences nécessaires à son fonctionnement. 
-
-Vous pouvez ignorer les mises à jour en sélectionnant l'option 3 (None).
-
 **Si vous rencontrez une erreur lors de l'installation ou de la mise à jour d'une des dépendences, vous pouvez effectuer le code suivant:**
 ```
 packages = c("knitr", "dplyr", "car", "nortest")
