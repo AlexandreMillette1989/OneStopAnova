@@ -9,8 +9,8 @@ License: GPL-2
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.0
-Depends: 
-    dplyr,
-    car,
-    nortest,
-    knitr
+Imports: 
+    dplyr (>= 1.0.0),
+    car (>= 3.0.2),
+    nortest (>= 1.0.4),
+    knitr (>= 1.29)
