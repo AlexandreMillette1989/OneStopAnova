@@ -86,7 +86,7 @@ calcium = read.table(file.choose(), header = TRUE)
 
 - var_names = le nom que vous souhaitez donner à vos variables;
 
-- Log (optionnel) = FALSE par défaut. Si l'argument est TRUE, la fonction effectue une transformation logarithmique de la variable quantitative. 
+- Log (optionnel) = FALSE par défaut. Si l'argument est TRUE, la fonction effectue une transformation logarithmique de la variable quantitative; 
 
 - Tukey (optionnel) = FALSE par défaut. Si l'argument est TRUE, la fonction effectue un test de Tukey sur les variables sélectionnées. 
 
