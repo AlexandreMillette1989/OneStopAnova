@@ -42,16 +42,16 @@ En date d'août 2020, le package offre deux fonctions, soit: **OneStopAnova()** 
 
 # Installation du package OneStopAnova
 
-Pour installer ce packages, vous devrez d'abord installer le package devtools:
+Pour installer ce package, vous devrez d'abord installer le package devtools:
 ```
 install.packages("devtools")
   
 library(devtools)
 ```
 
-Par la suite, vous serez en mesure d'importer des packages à partir de GitHub:
+Par la suite, vous serez en mesure d'importer le package à partir de GitHub:
 ```
-install_github("OneStopAnova")
+install_github("AlexandreMillette1989/OneStopAnova")
   
 library(OneStopAnova)
 ```
@@ -140,3 +140,5 @@ Vous pouvez donc créer un objet à partir de cette fonction pour effectuer votr
 
 ?OneStopAnova_IC
 ```
+
+**Pour obtenir de l'aide quant à l'utilisation du package ou concernant les erreurs, vous pouvez envoyez un courriel à: alexandre.millette1989@gmail.com**
