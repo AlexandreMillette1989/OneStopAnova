@@ -31,6 +31,7 @@
 #'
 #' @import nortest
 #'
+#'
 #' @examples
 #' OneStopAnova(Quantitative = "calcium$Concentration",
 #'              Qualitative = "calcium$Trait",
